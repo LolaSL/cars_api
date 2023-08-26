@@ -201,7 +201,7 @@
   border-radius: 3%;
   overflow: hidden;
   position: relative;
-  object-fit: contain;
+  object-fit
 }
 
 form > div {

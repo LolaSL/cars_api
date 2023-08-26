@@ -201,7 +201,6 @@
   border-radius: 3%;
   overflow: hidden;
   position: relative;
-  object-fit: contain;
 }
 
 form > div {
@@ -229,3 +228,4 @@ p{
 h3{
   @apply text-2xl font-bold mb-3 mt-6
   } 
+  

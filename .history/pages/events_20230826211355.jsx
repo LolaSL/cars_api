@@ -36,7 +36,7 @@ const Events = () => {
           height="400"
           src="/car_show.png"
           alt="cars"
-
+      
         />
       </div>
       <p>
