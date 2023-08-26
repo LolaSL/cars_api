@@ -1,0 +1,92 @@
+.wrapper {
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+  background:#EEEEEE; 
+  margin: 10px;
+  padding: 15px;
+  text-align:justify;
+  color: #11009E;
+  scroll-snap-type: y mandatory;
+  scroll-padding: 10px;
+  overflow-y: scroll;
+ }
+
+
+/* Link styles */
+#link {
+  color: blue;
+  text-decoration: none;
+}
+
+/* Main heading styles */
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Sub-heading styles */
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Paragraph styles */
+p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* Form container styles */
+.bg-white {
+  background-color: #fff;
+}
+
+/* Form input and textarea styles */
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: blue;
+}
+
+/* Submit button styles */
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: blue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #007bff;
+}
+
+/* Image wrapper styles */
+.showImageWrapper {
+  border-radius: 3%;
+  overflow: hidden;
+  width: 378px;
+  height: 230px;
+  position: relative;
+}

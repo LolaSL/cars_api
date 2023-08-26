@@ -1,0 +1,10 @@
+.wrapper {
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+  background:#EEEEEE; 
+  margin: 15px;
+  padding: 15px;
+  text-align:justify;
+  color: #4E4FEB
+ }

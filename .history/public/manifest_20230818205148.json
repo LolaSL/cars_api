@@ -1,0 +1,16 @@
+{
+    "name": "Car LOFT",
+    "short_name": "Car",
+    "icons": [
+      {
+        "src": "/path/to/icon-512.png", // Path to your 512x512 PNG icon
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff"
+  }
+  

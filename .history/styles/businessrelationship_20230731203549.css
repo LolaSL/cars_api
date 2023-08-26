@@ -1,0 +1,21 @@
+.page {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color:#0a0a0a;
+  font-family: "Manrope", sans-serif;
+ font-size: 74px;
+ background-color: #f2f2f2;
+}
+.page__title{
+font-size: 72px;
+font-weight: extrabold;
+}
+.page__title {
+  @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold;
+}
+.page__title-second{
+  @apply 2xl:text-[42px] sm:text-[34px] text-[400px] font-extrabold;
+}

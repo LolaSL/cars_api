@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("/background.png"); /* Update with the correct path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* This keeps the background fixed while scrolling */
+  font-family:sans-serif;
+  background-repeat: no-repeat; 
+  opacity: 0.4, 
+}

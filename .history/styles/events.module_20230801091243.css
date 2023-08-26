@@ -1,0 +1,11 @@
+.show__image {
+  width: 50%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .show__image {
+    max-width: 100%;
+  }
+}

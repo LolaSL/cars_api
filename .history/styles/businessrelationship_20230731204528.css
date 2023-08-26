@@ -1,0 +1,44 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+@font-face {
+  font-family: 'Manrope';
+  src: url('/path/to/custom-font.woff2') format('woff2'),
+       url('/path/to/custom-font.woff') format('woff');
+}
+.page {
+  min-height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #0a0a0a;
+  background-color: #f2f2f2;
+}
+
+.page__title {
+  color: #0a0a0a;
+  font-size: 74px;
+  font-weight: extrabold;
+}
+.page__title-second {
+}
+.page__title-second {
+  @apply 2xl:text-[42px] sm:text-[34px] text-[400px] font-extrabold;
+}
+.page__title-third {
+  @apply 2xl:text-[32px] sm:text-[24px] text-[30px] font-extrabold;
+}
+.page__subtitle {
+  @apply text-[27px] text-black-100 font-light mt-5;
+}
+
+.page__image-container {
+  @apply xl:flex-[1.5] flex justify-end items-end w-full xl:h-screen;
+}
+
+.page__image {
+  @apply relative xl:w-full w-[90%] xl:h-full h-[590px] z-0;
+}
+
+.page__image-overlay {
+  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
+}

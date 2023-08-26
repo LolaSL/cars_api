@@ -1,0 +1,20 @@
+
+import mongoose from "mongoose";
+const mongoURI = process.env.MONGO_URI as string;
+let connection: typeof mongoose;
+const connectDB = async () => {
+  if(!connection) connection = await mongoose.connect(mongoURI)
+}return connection
+// const connectDB = async () => {
+//   try {
+//     if (mongoose.connection.readyState === 0) {
+//       await
+//         mongoose.connect(mongoURI);
+//       console.log("db connected");
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+export default connectDB;

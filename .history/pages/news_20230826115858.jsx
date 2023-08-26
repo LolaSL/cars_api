@@ -1,0 +1,117 @@
+"use client";
+
+import React, { useState } from "react";
+import globals from "../app/styles/globals.css";
+import Link from "next/link";
+import { CustomButton, ShowMore } from "@components";
+import axios from "axios";
+
+
+
+function News() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+  const url = `https://newsapi.org/v2/everything?domains=autocar.co.uk,autoblog.com&pageSize=12&apiKey=640e78c8d6d7466faf6e27fcfe8102ec`;
+
+  const toggleFetching = () => {
+    setIsFetching(!isFetching);
+    if (!isFetching) {
+      GetNews();
+    } else {
+      setData(null);
+    }
+  };
+  const fetchMoreArticles = () => {
+    const nextPage = currentPage + 1;
+    const newUrl = `https://newsapi.org/v2/everything?domains=autocar.co.uk,autoblog.com&pageSize=12&page=${nextPage}&apiKey=640e78c8d6d7466faf6e27fcfe8102ec`;
+  
+    axios.get(newUrl)
+      .then((response) => {
+        const newArticles = response.data.articles;
+        setData(prevData => ({
+          ...prevData,
+          articles: [...prevData.articles, ...newArticles]
+        }));
+        setCurrentPage(nextPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  return (
+    <div
+      className={`min-h-screen m-6 py-6 justify-center  items-center bg-gray-200  px-16 text-justify text-blue-800 ${globals}`}
+    >
+      <h1 className="article__title ">Latest News</h1>
+      <p className="text-2xl mt-6 mb-6">
+        Want To Know What Happened Today In The Cars World? Find Out Now The
+        Latest News and Videos From AUTOCAR and AUTOBLOG Sources. Just Be
+        Updated.
+      </p>
+    <CustomButton
+  btnType="button"
+  title={isFetching ? "Close" : "Get Latest News"}
+  containerStyles="bg-primary-blue rounded-full text-white"
+  handleClick={() => {
+    toggleFetching();
+    if (!isFetching) {
+      GetNews();
+    }
+    fetchMoreArticles(); // Fetch more articles when ShowMore is clicked
+  }}
+/>
+      <div className="news__articles-wrapper">
+        {data &&
+          data.articles.map((d, index) => {
+            return (
+              <div key={index} className="article-card group ">
+                <div
+                  className="relative w-full h-50 "
+                  style={{ borderRadius: "8px", overflow: "hidden" }}
+                >
+
+                  <img
+                    src={d.urlToImage}
+                    alt="image"
+                    className="img-thumbnail  mb-3 mt-6 rounded "
+                
+                  />
+                </div>
+                <p  className="font-lighter mb-2">{d.author}</p>
+                <p className="text-sm text-black-200 mb-2">{d.publishedAt}</p>
+                <p className=" font-extrabold">{d.title}</p>
+                <p className="font-lighter mb-2">{d.source.name}</p>
+                <div>
+                  <Link
+                    href={`${d.url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pl-3 mt-6 text-orange-800  text-[16px] leading-[38px] font-extrabold rounded decoration-secondary-orange"
+                  >
+                    Read More
+                  </Link>
+                </div>
+        
+              </div>
+            ); 
+          })}     
+      </div>
+      <ShowMore
+  pageNumber={Math.ceil((data?.articles.pageSize || 0) / 12)}
+  isNext={((data?.articles.pageSize || 0) / 12) > 1}
+/>
+      <div className="link  font-bold  mb-3 mt-6">
+                  <Link
+                    href="/"
+                    style={{ color: "blue", textDecoration: "none" }}
+                  >
+                    {" "}
+                    Go Back
+                  </Link>
+                </div>
+    </div>
+  );
+}
+
+export default News;

@@ -1,0 +1,125 @@
+// import  { Document, Schema } from "mongoose";
+// import  mongoose { Model, models, model } from "mongoose";
+// import bcrypt from "bcryptjs";
+
+// interface UserDocument extends Document {
+//   email: string;
+//   fullname: string;
+//   password: string;
+//   role: "admin" | "user";
+// }
+// interface Methods {
+//   comparepassword(password: string): Promise<boolean>;
+// }
+// const userSchema = new Schema<UserDocument, {}, Methods>({
+//   email: {
+//     type: String,
+//     required: [true, "Email is required."],
+//     match: [/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/i, "Invalid email address"],
+//   },
+//   fullname: {
+//     type: String,
+//     required: [true, "Full name is required."],
+//     trim: true,
+//   },
+//   password: {
+//     type: String,
+//     required: [true, "Full name is required."],
+//     trim: true,
+//   },
+//   role: {
+//     type: String,
+//     enum: ["admin", "user"],
+//     default: "user",
+//   },
+// });
+// userSchema.pre("save", async function (next) {
+//   if (!this.isModified("password")) return next();
+//   try {
+//     const salt = await bcrypt.genSalt(13);
+//     this.password = await bcrypt.hash(this.password, salt);
+//     next();
+//   } catch (error) {
+//     throw error;
+//   }
+// });
+
+// userSchema.methods.comparepassword = async function (password) {
+//   try {
+//     return await bcrypt.compare(password, this.password)
+//   } catch (error) {
+//     throw error
+//   }
+
+// }
+// const UserModel = mongoose.models.User ||  mongoose.model("User", userSchema);
+
+// export default UserModel as Model<UserDocument, {}, Methods>;
+import { Document, Schema, Model, model } from "mongoose";
+import bcrypt from "bcryptjs";
+
+interface UserDocument extends Document {
+  email: string;
+  fullname: string;
+  password: string;
+  role: "admin" | "user";
+}
+
+interface UserModel extends Model<UserDocument> {
+  findByEmail(email: string): Promise<UserDocument | null>;
+}
+
+interface UserDocumentMethods {
+  comparePassword(password: string): Promise<boolean>;
+}
+
+const userSchema = new Schema<UserDocument, UserModel, UserDocumentMethods>({
+  email: {
+    type: String,
+    required: [true, "Email is required."],
+    match: [/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/i, "Invalid email address"],
+  },
+  fullname: {
+    type: String,
+    required: [true, "Full name is required."],
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: [true, "Password is required."],
+    trim: true,
+  },
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
+});
+
+userSchema.pre<UserDocument>("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
+  try {
+    const salt = await bcrypt.genSalt(13);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
+
+userSchema.methods.comparePassword = async function (password) {
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (error) {
+    throw error;
+  }
+};
+
+userSchema.statics.findByEmail = function (email: string) {
+  return this.findOne({ email });
+};
+
+const UserModel = model<UserDocument, UserModel>("User", userSchema);
+
+export default UserModel;
