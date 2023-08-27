@@ -2,7 +2,7 @@
 package = "@netlify/plugin-nextjs"
 
 [build]
-command = "npm run build"
+command = "npm rur build"
 publish = ".next"
 
 [build.environment]
