@@ -57,9 +57,16 @@ const Events = () => {
         FOS Future Lab for a look into the future of motoring.
       </p>
       <div className="show__image  mb-3 mt-6 ">
-        <Image src="/car_show1.png"    className="responsive"
+        <Image
+          className="responsive"
           width="600"
-          height="400" alt="Car Show"   />
+          height="400"
+          src="/car_show1.png"
+          alt="cars"
+          objectFit="cover"
+        />
+
+        <Image src="/car_show1.png" alt="Car Show" layout="fill" objectFit="contain" />
       </div>
       <p>Dates to be confirmed for 2024 soon</p>
       <h3 >

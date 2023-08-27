@@ -57,9 +57,28 @@ const Events = () => {
         FOS Future Lab for a look into the future of motoring.
       </p>
       <div className="show__image  mb-3 mt-6 ">
-        <Image src="/car_show1.png"    className="responsive"
+        <Image
+          className="responsive"
           width="600"
-          height="400" alt="Car Show"   />
+          height="400"
+          src="/car_show1.png"
+          alt="cars"
+          objectFit="cover"
+        />
+        The warning message you're encountering indicates that you're using the objectFit prop with the Image component in Next.js, which is a legacy prop and has been replaced with the layout prop in Next.js 13 and later versions. To fix this issue, you need to update your code to use the new layout prop.
+        
+        Here's how you can update your Image component code:
+        
+        Before (using objectFit):
+        
+        jsx
+        Copy code
+        <Image src="/car_show1.png" alt="Car Show" objectFit="contain" />
+        After (using layout):
+        
+        jsx
+        Copy code
+        <Image src="/car_show1.png" alt="Car Show" layout="fill" objectFit="contain" />
       </div>
       <p>Dates to be confirmed for 2024 soon</p>
       <h3 >
