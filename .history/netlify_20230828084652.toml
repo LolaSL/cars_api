@@ -1,0 +1,13 @@
+[[plugins]]
+package = "@netlify/plugin-nextjs"
+
+[build]
+command = "npm run build"
+publish = ".next"
+
+
+
+[[edge_functions]]
+function = "contact"
+path = "/contact.jsx"
+

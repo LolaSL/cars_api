@@ -138,7 +138,7 @@ const TermsAndConditions = () => {
       <p>Last Updated: [08.26.2023]</p>
 
       <div className="link  font-bold  mb-3 mt-6">
-        <Link href="/home" style={{ color: "blue", textDecoration: "none" }}>
+        <Link href="/" style={{ color: "blue", textDecoration: "none" }}>
           {" "}
           Go Back
         </Link>

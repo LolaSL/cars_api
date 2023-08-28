@@ -12,6 +12,10 @@ function = "contact"
 path = "/contact.jsx"
 
 
+[build]
+  command = "next build" 
+  publish = ".next" 
+
 [build.environment]
   NODE_VERSION = "16.13.1"
 
